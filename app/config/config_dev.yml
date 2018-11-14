@@ -26,7 +26,7 @@ monolog:
     #firephp:
     #    type: firephp
     #    level: info
-    #chromephp:
+    #chromephp
     #    type: chromephp
     #    level: info
 
