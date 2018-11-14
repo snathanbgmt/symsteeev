@@ -1,0 +1,29 @@
+{%extends 'base.html.twig'%}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/categorie.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-xs-offset-1 col-md-6">
+        <img alt="Bootstrap Image Preview" src="{{categorie.urlPicture}}" />
+        <h1>
+            {{categorie.name}}
+        </h1>
+    </div>
+</div>
+<div class="row">
+    {% for souscat in sous_categorie %}
+    <div class="col-xs-3 souscat">
+        <a href="http://blindeur.fr/web/app_dev.php/sous-categorie/{{souscat.id}}">
+            <h2>{{souscat.name}}</h2>
+            <img alt="Bootstrap Image Preview" src="{{souscat.urlPicture}}" width="100"/>
+        </a>
+    </div>
+
+    {%endfor%}
+</div>
+
+{% endblock %}

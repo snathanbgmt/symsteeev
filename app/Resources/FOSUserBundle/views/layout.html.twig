@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Blindeur{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fos.css') }}">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+            <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/autocomplete.js') }}"></script>
+    <div class="container-fluid globla">
+
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <a href="http://localhost:8000/app_dev.php"><img src= "{{asset('images/logo.png')}}" style="height:60px;" alt="Logo Blindeur"></a>
+            </div>
+            <div class="col-md-6">
+            </div>
+
+            {# Mode non connecté #}
+
+            {% if app.user.username is not defined %}
+            <div class="col-md-2">
+                <a href="http://localhost:8000/app_dev.php/login">
+                    <button type="button" class=" btn btn-block btnheader">
+                        Je contribue
+                    </button>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="http://localhost:8000/app_dev.php/login">
+                    <button type="button" class="btnheader btn btn-block">
+                        Connexion/Inscription
+                    </button>
+                </a>
+            </div>
+
+            {# Mode connecté #}
+
+            {% else %}
+            <div class="col-md-2">
+                <a href="http://localhost:8000/app_dev.php/contribution">
+                    <button type="button" class="btnheader btn btn-danger btn-block">
+                        Je contribue
+                    </button>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="http://localhost:8000/app_dev.php/profile"><img src= "{{asset('images/user.jpg')}}" alt="Logo Utilisateur" /></a>
+                <p><a href="http://localhost:8000/app_dev.php/profile">Bonjour {{ app.user.username }}</a></p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav textenav">
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/1" class="informatique">Informatique</a> <div id = "match1"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/2" class="telephonie">Téléphonie</a> <div id = "match2"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/3" class="image">Image et son</a> <div id = "match3"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/4" class="console">Consoles de jeux</a> <div id = "match4"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/5" class="photo">Photo et caméra</a> <div id = "match5"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/6" class="hightech">High-tech</a> <div id = "match6"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/7" class="pelectro">Petit électroménager</a> <div id = "match7"></div></li>
+                            <li><a href="http://localhost:8000/app_dev.php/categorie/8" class="gelectro">Gros électroménager</a> <div id = "match8"></div></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+            <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{ message | raw }}
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>    
+
+        <div class="row">
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+        <div class="row greybackground1">
+            <br>
+            <br>
+            <br>
+            <br>
+            <p>
+                &copy; 2017 Blindeur. Tous droits réservés 
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+</body>
+</html>

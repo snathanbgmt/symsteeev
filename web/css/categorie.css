@@ -1,0 +1,14 @@
+.souscat{
+	padding:3%;
+}
+
+.souscat h2{
+	color:#FF7C4C;
+	text-align: center;
+	font-size: 120%;
+}
+
+.souscat img{
+    display: block;
+    margin: 0 auto;
+}

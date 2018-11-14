@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Blindeur{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body>
+ <div class="container-fluid">
+    <div class="row navbarstyle">
+        <div class="col-md-2">
+            <a href="http://blindeur.fr/web/app_dev.php"><img src= "{{asset('images/logo.png')}}" style="height:80px;" alt="Logo Blindeur" class="logoObso"></a>
+        </div>
+        <div class="col-md-6 col-sm-2 col-xs-0">
+        </div>
+
+        {# Mode non connecté #}
+
+        {% if app.user.username is not defined %}
+        <div class="col-md-2">
+            <a href="http://blindeur.fr/web/app_dev.php/login">
+                <button type="button" class="btn btn-block btnheader">
+                    Je contribue
+                </button>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="http://blindeur.fr/web/app_dev.php/login">
+                <button type="button" class="btnheader btn btn-block">
+                    Connexion/Inscription
+                </button>
+            </a>
+        </div>
+
+        {# Mode connecté #}
+
+        {% else %}
+        <div class="col-md-2">
+            <a href="http://blindeur.fr/web/app_dev.php/contribution">
+                <button type="button" class="btnheader btn btn-block">
+                    Je contribue
+                </button>
+            </a>
+        </div>
+        <div class="col-sm-2 hidden-sm">
+            <a href="http://blindeur.fr/web/app_dev.php/profile"><img src= "{{asset('images/user.jpg')}}" alt="Logo Utilisateur" /></a>
+            <p><a href="http://blindeur.fr/web/app_dev.php/profile">Bonjour {{ app.user.username }}</a></p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav textenav">
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/26" class="informatique">Informatique</a> <div id = "match1"></div></li>
+                            <li><a href="/categorie/27" class="telephonie">Téléphonie</a> <div id = "match2"></div></li>
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/28" class="image">Image et son</a> <div id = "match3"></div></li>
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/29" class="console">Consoles de jeux</a> <div id = "match4"></div></li>
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/30" class="photo">Photo et caméra</a> <div id = "match5"></div></li>
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/31" class="hightech">High-tech</a> <div id = "match6"></div></li>
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/32" class="pelectro">Petit électroménager</a> <div id = "match7"></div></li>
+                            <li><a href="http://blindeur.fr/web/app_dev.php/categorie/33" class="gelectro">Gros électroménager</a> <div id = "match8"></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+        <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            {{ message | raw }}
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>    
+
+    <div class="form-group searchbackground">
+        <br>
+        <br>
+        <br>
+        <h2 class="whitetext1">Trouver la durée de vie estimée de vos produits</h2>
+        <br>
+        <br>
+        <div class="col-md-2">
+        </div>
+        <form action="/searchproduct" method="post" class = "col-md-10">
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="input" name="produit" autocomplete="off"/>
+                <div id = "match"></div>
+            </div>
+        </form>
+
+    </div>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/autocomplete.js') }}"></script>
+    <script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
+    <div class="row">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="row greybackground1">
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>
+            &copy; 2017 Blindeur. Tous droits réservés 
+        </p>
+    </div>
+</div>
+
+
+<div class="fenetreconnexion" style="display:none; position:fixed; width:50%;left:25%; top:10%; height:80%; background-color:white;">
+
+    <img class="close1" src="{{asset('images/croix.png')}}" />
+    <div class="col-sm-10">
+        <form class="col-xs-12" action="{{ path("fos_user_security_check") }}" method="post">
+            <h1 class=" title">ME CONNECTER</h1>
+            <br>
+            <br>
+            <input type="hidden" name="_csrf_token" value="test" />
+
+            <div class="form-group" >
+                <label for="username" class="orangetext">Adresse email</label>
+                <input class="form-control" type="text" id="username" name="_username" value="" required="required" />
+            </div>
+            <div class="form-group">
+                <label for="password" class="orangetext">Mot de passe</label>
+                <input class="form-control" type="password" id="password" name="_password" required="required" />
+            </div>
+            <div class="form-group">
+                <label for="remember_me" class="orangetext">Se souvenir de moi</label>
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            </div>
+
+            <p class="forgetpassword"><a href="http://blindeur.fr/web/app_dev.php/resetting/request">Mot de passe oublié?</a></p>
+            <button class="btn btn-info btn-block" type="submit" id="_submit" name="_submit" value="" /> Connexion </button>
+            <br>
+            <br>
+            <p class="profilmanquant">Vous n'avez pas encore de profil?</p>
+            <p class="forgetpassword"><a href="http://blindeur.fr/web/app_dev.php/register">Inscrivez-vous</a></p>
+            <br>
+            <br>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>
+
+<div class="fenetrecontribution" style="display:none; position:fixed; width:50%;left:25%; top:10%; height:80%; background-color:white;">
+
+    <img class="close1" src="{{asset('images/croix.png')}}" />
+    <div class="col-sm-10">
+
+    </div>
+</div>
+
+
+</body>
+</html>

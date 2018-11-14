@@ -1,0 +1,85 @@
+.filters{
+	padding-left:5%;
+}
+
+.title{
+	text-align: center;
+	font-size: 400%;
+	color:#FF7C4C;
+}
+.filter{
+	border-radius: 0px 0px 0px 0px;
+	-moz-border-radius: 0px 0px 0px 0px;
+	-webkit-border-radius: 0px 0px 0px 0px;
+	border: 1px solid #B9B9B9;
+	margin:3%;
+	padding: 1%;
+    width:100%;
+}
+
+.metalabel{
+	color:#696969;
+	text-align: center;
+}
+
+.produit{
+	
+    border-radius: 0px 0px 0px 0px;
+	-moz-border-radius: 0px 0px 0px 0px;
+	-webkit-border-radius: 0px 0px 0px 0px;
+	border: 1px solid #696969;
+	margin-bottom: 3%;
+	padding-bottom: 20px;
+}
+
+.produit img{
+	width: 100%;
+	height: auto;
+}
+.produit h2{
+	font-weight: bold;
+	text-align: left;
+	font-size: 150%;
+}
+
+.produit p a{
+	color:#696969;
+}
+
+.produit p{
+	color:#696969;
+}
+.produit li{
+	list-style-type: circle;;
+}
+
+.blacktext{
+	color:black!important;
+}
+
+.dureetitle{
+	padding-top:10%;
+	font-weight: bold;
+	font-size: 150%;
+}
+.duree{
+	color:#FF7C4C !important;
+	font-size: 200%
+}
+.nbavis{
+	color:#FF7C4C !important;
+	font-size: 80%!important;
+	text-align: center;
+}
+
+.brncontribution{
+	margin-bottom: 30px;
+}
+.searchbutton{
+	color: white;
+	background-color: #FF7C4C;
+}
+.btntrier{
+	background-color:white;
+	border-color: black;
+}

@@ -1,0 +1,77 @@
+{%extends 'base.html.twig'%}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/souscategorie.css') }}">
+{% endblock %}
+
+{% block content %}
+<br>
+
+
+<div class="col-md-2">
+</div>
+
+<div class="col-md-8">
+  <h1 class="title">Resultats de la recherche</h1>
+  <br>
+<br>
+<br>
+  {% for produit in produits %}
+
+  <div class="row produit">
+
+    <div class="col-md-3">
+      <a href="http://blindeur.fr/web//app_dev.php/produit/{{produit.id}}">
+        <img alt="Bootstrap Image Preview" src="{{produit.urlPicture}}" class="pictureproduct" />
+      </a>
+    </div>
+    <div class="col-md-6">
+      <h2>
+        <a href="http://blindeur.fr/web//app_dev.php/produit/{{produit.id}}">{{produit.name}}</a>
+      </h2>
+      <p>
+        <a href="http://blindeur.fr/web//app_dev.php/categorie/{{produit.subcategory.category.id}}">{{produit.subcategory.category.name}}</a> - <a href="http://blindeur.fr/web//app_dev.php/marque/{{produit.brand.id}}">{{produit.brand.name}}</a>
+        <br>
+        <span class= "prix">{{produit.prix}}</span>€
+      </p>
+    </div>
+    <div class="col-md-3">
+      <p class="dureetitle">
+        Durée de vie estimée:
+        <br>
+        {% if produit.nbcontributions > 5 %}
+        <span class="duree">{{produit.defaultLifeSpan}} ans</span>
+        <br>
+        <span class="nbavis">({{produit.nbcontributions}} avis)</span>
+        {% else %}
+        <p class="pas-assez-de-contrib">Il n'y a pas assez de contributions pour le moment ! <br /> N'hésitez pas à y ajouter votre retour d'expérience en cliquant sur "Je contribue"</p>
+        <br>
+        {% endif %}
+      </p>
+
+
+      {% if app.user.username is not defined %}
+      <a href="http://blindeur.fr/web//app_dev.php/register">
+        <button type="button" class="btn produitcontributton">
+         Je Contribue
+       </button>
+     </a>
+     {%else%}
+     <a href="http://blindeur.fr/web//app_dev.php/produit/{{produit.id}}?contribution=1">
+      <button type="button" class="btn produitcontributton">
+       Je Contribue
+     </button>
+   </a>
+   {%endif%}
+
+ </div>
+</div>
+<br>
+<br>
+<br>
+
+{%endfor%}
+</div>
+
+
+{% endblock %}

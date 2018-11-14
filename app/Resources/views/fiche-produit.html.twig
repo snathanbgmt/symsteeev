@@ -1,0 +1,489 @@
+{%extends 'base.html.twig'%}
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/ficheproduit.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class ="col-md-10">
+    <p class="descritpion margin10">
+      <a href="http://blindeur.fr/web/app_dev.php/categorie/{{produit.subcategory.category.id}} ">{{produit.subcategory.category.name}}</a> > <a href="http://blindeur.fr/web/app_dev.php/sous-categorie/{{produit.subcategory.id}}">{{ produit.subcategory.name}}</a> > <a href="http://blindeur.fr/web/app_dev.php/marque/{{produit.brand.id}}">{{produit.brand.name}}</a>
+    </p>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <h2 class="margin15">
+      {{produit.name}}
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <p class="margin15 descritpion">
+      Date d'ajout du produit:{{produit.dateAjout|date("m/d/Y")}}
+    </p>
+  </div>
+  {# Mode non connecté #}
+  {% if app.user.username is not defined %}
+  <div class="col-md-2 orangetext">
+    <a href="http://blindeur.fr/web/app_dev.php/login">
+      Créer une alerte
+    </a>
+  </div>
+
+  {# Mode connecté #}
+  {% elseif isalerte%}
+  <div class="col-md-2 orangetext">
+    <a class="createalerte" href="#">
+      Modifier mon alerte
+    </a>
+  </div>
+  {% else %}
+
+  <div class="col-md-2 orangetext">
+    <a class="createalerte" href="#">
+      Créer une alerte
+    </a>
+  </div>
+  {% endif %}
+</div>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-2 pictureproductbloc">
+    <span class="helperimmage"></span><img class="pictureproduct" alt="Bootstrap Image Preview" src="{{produit.urlPicture}}" />
+  </div>
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-5 cadreproduit">
+    <h3 class="resume">
+      En résumé
+    </h3>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-5">
+        <h4 class="legende">
+          Durée de vie estimée
+        </h4>
+      </div>
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-6">
+        {% if produit.nbcontributions > 5 %}
+        <p class="prix">{{produit.defaultLifespan}} ans</p>
+        {% else %}
+        <p class="pas-assez-de-contrib">Il n'y a pas assez de contributions pour le moment ! <br /> N'hésitez pas à y ajouter votre retour d'expérience en cliquant sur "Je contribue"</p>
+        {% endif %}
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-5">
+        <h4 class="legende">
+          Prix moyen chez les distributeurs
+        </h4>
+      </div>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-5">
+        <p class="vraieprix">{{produit.prix}} €</p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-5">
+        <a href="#tableaucomparatif" class="lientableaucomparatif">Voir le tableau récapitulatif</a>
+      </div>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-5">
+        {# Mode non connecté #}
+        {% if app.user.username is not defined %}
+        <a href="http://blindeur.fr/web/app_dev.php/register">
+          <button type="button" id="bouttontest" class="btn btn-block produitcontributton size150">
+            Je contribue
+          </button>
+        </a>
+        {% elseif not iscontribution%}
+        <button type="button" id="bouttontest" class="btn btn-block produitcontributton size150">
+          Je contribue
+        </button>
+        {% else%}
+        Vous avez déjà contribué pour ce produit. 
+        MERCI !!
+        {% endif%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row row1">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-4 grey-background pannelaplusrecurrente">
+    <h3 class="titlerecurrent">
+      Panne la plus réccurente
+    </h3>
+    <br>
+    <br>
+    <br>
+    {% if produit.nbcontributions > 5 %}
+    <p class="courrante">
+      "{{courante}}"
+    </p>
+    <br>
+
+    <p class="explication">
+      Apparait en moyenne après <span class="whitetext">{{year}} années et {{month}} mois</span> d'utilisation
+    </p>
+    {% else %}
+    <p class="pas-assez-de-contrib1">Il n'y pas assez de contributions pour déterminer les pannes les plus récurrentes de ce produit. <br />
+      N'hésitez pas à ajouter votre retour d'expérience en cliquant sur "Je contribue"</p>
+      {% endif %}
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-4 cadrepannes">
+      <h3 class="resume">
+        Répartition des pannes les plus récurrentes
+      </h3>
+
+      <section class="section">
+        <div class="columns">
+          <div>
+            <ul class="graph-vertical">
+              {% for name,nbs in typePannes%}
+              <li><span>{{name}}</span><span style="height: {{nbs+2}}rem"><span class="cover"> : </span>{{nbs}}</span></li>
+              {%endfor%}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+  <HR size=40>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10">
+        <h3 class= "picto">
+          Classement des produits similaires
+        </h3>
+        <br>
+        <br>
+        <table id="tableaucomparatif" class="table table-bordered">
+          <thead>
+            <tr class="labeltableau">
+              <th>
+                <br>
+                Nom Produit
+                <br>
+              </th>
+              <th>
+                <br>
+                Marque
+                <br>
+              </th>
+              <th>
+                <br>
+                Prix
+                <br>
+              </th>
+              <th>
+                <br>
+                Durée de vie moyenne
+                <br>
+              </th>
+              <th>
+                <br>
+                Statut
+                <br>
+              </th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for simil in simils %}
+            <tr class="picto">
+
+              <td>
+                <a href="http://blindeur.fr/web/app_dev.php/produit/{{simil.id}}">
+                  <br>
+                  {{simil.name}}
+                  <br>
+                </a>
+              </td>
+              <td>
+                <a href="http://blindeur.fr/web/app_dev.php/marque/{{simil.brand.id}}">
+                  <br>
+                  {{simil.brand.name}}
+                  <br>
+                </a>
+              </td>
+              <td>
+                <br>
+                {{simil.prix}}€
+                <br>
+              </td>
+              <td>
+                {% if produit.nbcontributions > 5 %}
+                <br>
+                {{simil.defaultlifespan}} ans
+                <br>
+                {% else %}
+                <p class="pas-assez-de-contrib">Il n'y a pas assez de contributions pour le moment !</p>
+                {% endif %}
+              </td>
+              <td>
+                {% if simil.defaultlifespan/simil.prix > produit.defaultlifespan/produit.prix %}
+                <img alt="Bootstrap Image Preview" src="{{asset('images/vert.png')}}" class = "dino"/>
+                {% endif %}
+                {% if simil.defaultlifespan/simil.prix < produit.defaultlifespan/produit.prix%}
+                <img alt="Bootstrap Image Preview" src="{{asset('images/orange.png')}}" class = "dino"/>
+                {% endif %}
+                {% if simil.defaultlifespan/simil.prix == produit.defaultlifespan/produit.prix%}
+                <img alt="Bootstrap Image Preview" src="{{asset('images/rouge.png')}}" class = "dino"/>
+                {% endif %}
+              </td>
+
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          Comment ça marche?
+        </h2>
+        <hr>
+        <div class="row ">
+          <div class="col-md-4">
+            <img alt="Bootstrap Image Preview" src="{{asset('images/search.png')}}"  class="center sizepicture">
+            <h3 class="picto">
+              Rechercher
+            </h3>
+            <hr>
+            <p class="picto">
+              Je tape ma recherche et hop, je trouve la durée de vie de mon produit.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <img alt="Bootstrap Image Preview" src="{{asset('images/contribuer.png')}}" class="center sizepicture">
+            <h3 class="picto">
+              Contribuer
+            </h3>
+            <hr>
+            <p class="picto">
+              Je partage mon retour d'expérience sur mon équipement en signalant ma panne.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <img alt="Bootstrap Image Preview" src="{{asset('images/anticiper.png')}}" class="center sizepicture">
+            <h3 class="picto">
+              Anticiper
+            </h3>
+            <hr>
+            <p class="picto">
+              Je suis alerté de la fin d'effet de ma garantie et de l'évolution de la durée de vie éstimée de mon produit
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          Le Top de la catégorie
+        </h2>
+        <hr>
+        <div class="row">
+          {% for produit in tops%}
+          <div class="col-md-4">
+            <div class="produit">
+              <a href="http://blindeur.fr/web/app_dev.php/produit/{{produit.id}}">
+                <img alt="Bootstrap Image Preview" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Question_mark_alternate.svg/langfr-90px-Question_mark_alternate.svg.png"  class="center"/>
+                <h3 class="picto">
+                  {{produit.name}}
+                </h3>
+                <p class="picto subtitle"><a class="subtitile" href="http://blindeur.fr/web/app_dev.php/categorie/{{produit.subcategory.category.id}}">{{produit.subcategory.category.name}}</a> - <a href="http://blindeur.fr/web/app_dev.php/sous-categorie/{{produit.subcategory.id}}">{{produit.subcategory.name}} </a> - <a href="http://blindeur.fr/web/app_dev.php/marque/{{produit.brand.id}}">{{produit.brand.name}}</a></p>
+                <hr>
+                <hr>
+                {% if produit.nbcontributions > 5 %}
+                <p class="picto orangetext bigsize">
+                  {{produit.defaultLifeSpan}} ans
+                </p>
+                <p class="picto subtitle">
+                  de durée de vie moyenne
+                </p>
+                {{simil.defaultlifespan}} ans
+                <br>
+                {% else %}
+                <p class="pas-assez-de-contrib">Il n'y a pas assez de contributions pour le moment !</p>
+                {% endif %}
+
+
+                <hr>
+                <hr>
+                <p class="picto orangetext">
+                  ({{produit.nbcontributions}} contributions)
+                </p>
+
+
+
+                {% if app.user.username is not defined %}
+                <a href="http://blindeur.fr/web/app_dev.php/register">
+                  <button type="button" class=" btn btnheader produitcontributton">
+                    Je contribue
+                  </button>
+                </a>
+                {%else%}
+                <a href="http://blindeur.fr/web/app_dev.php/produit/{{produit.id}}?contribution=1">
+                  <button type="button" class=" btn btnheader produitcontributton">
+                    Je contribue
+                  </button>
+                </a>
+                {%endif%}
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+      </div>
+      <div class="alertewindow">
+        <div>
+          <img class="close" src="{{asset('images/croix.png')}}" />
+          <h2 class="orangetext">Créer une alerte sur ce produit</h2>
+          <br>
+          <br>
+        </div>
+        {{ form(form) }}
+      </div>
+
+      {% if popupcontribution %}
+      <div class="fenetre" style="position:absolute; left:30%; top:30%; background-color:white; display:block;">
+        {% else %}
+        <div class="fenetre" style="display:none; position:absolute; left:30%; top:30%; background-color:white;">
+          {% endif %}
+
+          <img class="close1" src="{{asset('images/croix.png')}}" />
+          <div class="col-sm-10">
+            <h2>{{ produit.name }}</h2>
+            {{ form(formc) }}
+            <a href="#" id="add_category" class="btn btn-default">Ajouter une Panne</a>
+          </div>
+        </div>
+
+        <script>
+        $(document).ready(
+          function(){
+            $("#bouttontest").click(function(){
+              $(".fenetre").slideDown("slow");
+            });
+            $(".close1").click(function(){
+              $(".fenetre").slideUp("slow");
+            }
+            );
+
+
+          }
+          );
+
+        $(document).ready(function() {
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div#form_Panne');
+
+    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    var index = $container.find(':input').length;
+
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $('#add_category').click(function(e) {
+      addCategory($container);
+
+      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+      return false;
+    });
+
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    if (index == 0) {
+      addCategory($container);
+    } else {
+      // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+
+    // La fonction qui ajoute un formulaire CategoryType
+    function addCategory($container) {
+      // Dans le contenu de l'attribut « data-prototype », on remplace :
+      // - le texte "__name__label__" qu'il contient par le label du champ
+      // - le texte "__name__" qu'il contient par le numéro du champ
+      var template = $container.attr('data-prototype')
+      .replace(/__name__label__/g, 'Panne n°' + (index+1))
+      .replace(/__name__/g,        index)
+      ;
+
+      // On crée un objet jquery qui contient ce template
+      var $prototype = $(template);
+
+      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+      addDeleteLink($prototype);
+
+      // On ajoute le prototype modifié à la fin de la balise <div>
+      $container.append($prototype);
+
+      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+      index++;
+    }
+
+    // La fonction qui ajoute un lien de suppression d'une catégorie
+    function addDeleteLink($prototype) {
+      // Création du lien
+      var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer la panne</a>');
+
+      // Ajout du lien
+      $prototype.append($deleteLink);
+
+      // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+  });
+
+$(document).ready(
+  function(){
+    $(".createalerte").click(function(){
+      $(".alertewindow").slideDown("slow");
+    });
+    $(".close").click(function(){
+      $(".alertewindow").slideUp("slow");
+    }
+    );
+
+
+  }
+  );
+
+</script>
+
+{% endblock %}

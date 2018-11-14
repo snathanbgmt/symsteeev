@@ -1,0 +1,38 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<div class="col-md-3">
+</div>
+<form class="col-md-6" action="{{ path("fos_user_security_check") }}" method="post">
+    <h1 class=" title">ME CONNECTER</h1>
+    <br>
+    <br>
+    {% if csrf_token %}
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+    <div class="form-group" >
+        <label for="username" class="orangetext">Adresse Email</label>
+        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="password" class="orangetext">{{ 'security.login.password'|trans }}</label>
+        <input class="form-control" type="password" id="password" name="_password" required="required" />
+    </div>
+    <div class="form-group">
+        <label for="remember_me" class="orangetext">{{ 'security.login.remember_me'|trans }}</label>
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    </div>
+
+    <p class="forgetpassword"><a href="http://blindeur.fr/web/app_dev.php/resetting/request">Mot de passe oublié?</a></p>
+    <button class="btn btn-info btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" /> Connexion </button>
+    <br>
+    <br>
+    <p class="profilmanquant">Vous n'avez pas encore de profil?</p>
+    <p class="forgetpassword"><a href="http://blindeur.fr/web/app_dev.php/register">Inscrivez-vous</a></p>
+    <br>
+    <br>
+    <br>
+    <br>
+</form>

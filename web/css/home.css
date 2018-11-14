@@ -1,0 +1,67 @@
+h2{
+	font-weight: bold;
+}
+
+.picto{
+	text-align: center; 
+}
+
+img.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.ensavoirplus{
+	color:#FF7C4C;
+	text-decoration: underline;
+	font-size: 150%;
+	cursor: pointer
+}
+
+.close{
+	height: 20px;
+    width: 20px;
+}
+
+.greybackground{
+	background-color: #B9B9B9;
+}
+.whitetext{
+	color: white;
+}
+.ethique p{
+	color:#696969;
+	text-align: center;
+}
+.produit{
+	border-radius: 0px 0px 0px 0px;
+-moz-border-radius: 0px 0px 0px 0px;
+-webkit-border-radius: 0px 0px 0px 0px;
+border: 1px solid #B9B9B9;
+	margin:3%;
+	padding: 10%;
+}
+.subtitle a{
+	color: #696969;
+}
+
+
+.subtitle {
+	color: #696969;
+}
+
+.orangetext{
+	color:#FF7C4C;
+}
+
+.bigsize{
+	font-size: 300%;
+}
+.sizepicture{
+	height:150px;
+	padding-bottom: 50px;
+}
+h3 .picto {
+    font-size: 16px;
+}
+

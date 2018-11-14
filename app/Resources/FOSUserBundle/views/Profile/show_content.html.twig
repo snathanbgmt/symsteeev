@@ -1,0 +1,146 @@
+    {% trans_default_domain 'FOSUserBundle' %}
+    
+    <div class="container">
+
+
+        <div id="content">
+          <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+            <li class="active"><a href="#red" data-toggle="tab">Mon compte</a>
+            </li>
+            <li><a href="#orange" data-toggle="tab">Mes alertes</a>
+            </li>
+            <li><a href="#yellow" data-toggle="tab">Mes contributions</a>
+            </li>
+        </ul>
+    </div>
+    <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane active" id="red">
+
+        <div class="fos_user_user_show">
+            <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+            <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        </div>
+        <p class="forgetpassword1"><a href="http://blindeur.fr/web/app_dev.php/profile/edit">Editer mon Profile</a></p>
+         <p class="forgetpassword1"><a href="http://blindeur.fr/web/app_dev.php/profile/change-password">Changer de mot de passe</a></p>
+
+    </div>
+    <div class="tab-pane" id="orange">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Produit
+                    </th>
+                    <th>
+                        Date d'achat
+                    </th>
+                    <th>
+                        Date de fin de garantie
+                    </th>
+                    <th>
+                        Durée de vie du produit
+                    </th>
+                    <th>
+                        Alerte 1 mois avant la fin de garantie
+                    </th>
+                    <th>
+                        Alerte avant la fin de garantie
+                    </th>
+                    <th>
+                        Alerte fin de vie du produit
+                    </th>
+                    <th>
+                        Editer
+                    </th>
+                    <th>
+                        Supprimer
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for alerte in alertes %}
+                <tr>
+
+                    <td>
+                        {{alerte.produit.name}}
+                    </td>
+                    <td>
+                        {{alerte.dateachat|date("m/d/Y")}}
+                    </td>
+                    <td>
+                        {{alerte.dategarantie|date("m/d/Y")}}
+                    </td>
+                    <td>
+                        {{alerte.produit.defaultlifespan}} ans
+                    </td>
+                    <td>
+                        {% for type in alerte.typealerte %}
+                        {% if type.id==1 %}
+                        OUI
+                        {% endif%}
+                        {%endfor%}
+                    </td>
+                    <td>
+                        {% for type in alerte.typealerte %}
+                        {% if type.id==2 %}
+                        OUI
+                        {% endif%}
+                        {%endfor%}
+                    </td>
+                    <td>
+                        {% for type in alerte.typealerte %}
+                        {% if type.id==3 %}
+                        OUI
+                        {% endif%}
+                        {%endfor%}
+                    </td>
+                    <td>
+                        <a href="http://blindeur.fr/web/app_dev.php/produit/{{alerte.produit.id}}">EDITER</a>
+                    </td>
+                    <td>
+                        <a href="http://blindeur.fr/web/app_dev.php/supprimerAlerte/{{alerte.id}}">
+                            Supprimer
+                        </a>
+                    </td>
+
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+    <div class="tab-pane" id="yellow">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Produit
+                    </th>
+                    <th>
+                        Supprimer Contribution
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for contribution in contributions %}
+                <tr>
+
+                    <td>
+                        {{contribution.produit.name}}
+                    </td>
+                    <td>
+                        <a href="http://blindeur.fr/web/app_dev.php/supprimerContribution/{{contribution.id}}">
+                            Supprimer
+                        </a>
+                    </td>
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

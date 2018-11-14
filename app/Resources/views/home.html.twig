@@ -1,0 +1,137 @@
+{%extends 'base.html.twig'%}
+
+{% block title %}Blindeur{% endblock %}
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-12">
+		<h2>
+			Comment ça marche?
+		</h2>
+		<hr>
+		<div class="row ">
+			<div class="col-md-4">
+				<img alt="Bootstrap Image Preview" src="{{asset('images/search.png')}}"  class="center sizepicture">
+				<h3 class="picto">
+					Rechercher
+				</h3>
+				<hr>
+				<p class="picto">
+					Je tape ma recherche et hop, je trouve la durée de vie de mon produit.
+				</p>
+			</div>
+			<div class="col-md-4">
+				<img alt="Bootstrap Image Preview" src="{{asset('images/contribuer.png')}}" class="center sizepicture">
+				<h3 class="picto">
+					Contribuer
+				</h3>
+				<hr>
+				<p class="picto">
+					Je partage mon retour d'expérience sur mon équipement en signalant ma panne.
+				</p>
+			</div>
+			<div class="col-md-4">
+				<img alt="Bootstrap Image Preview" src="{{asset('images/anticiper.png')}}" class="center sizepicture">
+				<h3 class="picto">
+					Anticiper
+				</h3>
+				<hr>
+				<p class="picto">
+					Je suis alerté de la fin d'effet de ma garantie et de l'évolution de la durée de vie éstimée de mon produit
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<hr>
+<div class="row greybackground">
+	<div class="col-md-12">
+		<h2 class="whitetext">
+			Notre éthique
+		</h2>
+		<div class="row">
+			<div class="col-md-4">
+				<a href="http://blindeur.fr/web/app_dev.php/ethique">
+					<img alt="Bootstrap Image Preview" src="{{asset('images/ethique.png')}}" class="center sizepicture">
+				</a>
+			</div>
+			<div class="col-md-4 ethique">
+				<p>Informer</p>
+				<p>Donner la parole à l'utilisateur</p>
+				<p>Assurer la fiabilité des retours d'expérience</p>
+			</div>
+			<div class="col-md-4">
+				<a href="http://blindeur.fr/web/app_dev.php/ethique">
+					<img alt="Bootstrap Image Preview" src="{{asset('images/ethique.png')}}" class="center sizepicture">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h2>
+			Ceux qui font le plus parler d'eux
+		</h2>
+		<hr>
+		<div class="row">
+			{% for produit in produits%}
+			<div class="col-md-4">
+				<div class="produit">
+					<a href="http://blindeur.fr/web/app_dev.php/produit/{{produit.id}}">
+						<img alt="Bootstrap Image Preview" src="{{produit.urlPicture}}" width="100"  class="center"/>
+						<h3 class="titleproduit">
+							{{produit.name}}
+						</h3>
+						<p class="picto subtitle"><a class="subtitile" href="http://blindeur.fr/web/app_dev.php/categorie/{{produit.subcategory.category.id}}">{{produit.subcategory.category.name}}</a> - <a href="http://blindeur.fr/web/app_dev.php/sous-categorie/{{produit.subcategory.id}}">{{produit.subcategory.name}} </a> - <a href="http://blindeur.fr/web/app_dev.php/marque/{{produit.brand.id}}">{{produit.brand.name}}</a></p>
+						<hr>
+						<hr>
+						{% if produit.nbcontributions > 5 %}
+						<p class="picto orangetext bigsize">
+							{{produit.defaultLifeSpan}} ans
+						</p>
+						<p class="picto subtitle">
+							de durée de vie moyenne
+						</p>
+						{{simil.defaultlifespan}} ans
+						<br>
+						{% else %}
+						<p class="pas-assez-de-contrib">Il n'y a pas assez de contributions pour le moment !</p>
+						{% endif %}
+						<hr>
+						<hr>
+						<p class="picto orangetext">
+							({{produit.nbcontributions}} contributions)
+						</p>
+
+
+						{% if app.user.username is not defined %}
+						<a href="http://blindeur.fr/web/app_dev.php/register">
+							<button type="button" class=" btn btnheader produitcontributton">
+								Je contribue
+							</button>
+
+						</a>
+						{%else%}
+						<a href="http://blindeur.fr/web/app_dev.php/produit/{{produit.id}}?contribution=1">
+							<button type="button" class=" btn btnheader produitcontributton">
+								Je contribue
+							</button>
+
+						</a>
+						{%endif%}
+
+					</div>
+				</div>
+				{%endfor%}
+			</div>
+		</div>
+	</div>
+	{% endblock %}

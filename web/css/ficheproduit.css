@@ -1,0 +1,355 @@
+.alertewindow{
+	background-color: #B9B9B9;
+	padding: 20px;
+	margin: 0;
+	display:none; 
+	position:absolute; 
+	left:30%; 
+	top:10%;
+	width:40%;
+	height: 80%;
+	border-radius: 24px 24px 24px 24px;
+-moz-border-radius: 24px 24px 24px 24px;
+-webkit-border-radius: 24px 24px 24px 24px;
+border: 3px solid #FF7C4C;
+}
+
+.orangetext{
+	color:#FF7C4C;
+}
+
+.close{
+	height: 25px;
+	width: 25px;
+}
+.descritpion{
+	color:#696969!important;
+}
+.descritpion a{
+	color:#696969!important;
+}
+.margin10{
+	margin-left: 7%;
+}
+.margin15{
+	margin-left: 15%;
+	text-align: left;
+}
+.orangetext a{
+	color:#FF7C4C;
+	text-decoration: underline;
+	bottom: 0px;
+}
+.cadreproduit{
+    border-radius: 0px 0px 0px 0px;
+-moz-border-radius: 0px 0px 0px 0px;
+-webkit-border-radius: 0px 0px 0px 0px;
+border: 2px solid #B9B9B9;
+  margin:3%;
+  padding: 1%;
+    width: 44%;
+    border-width: 1px;
+}
+
+.pictureproduct{
+	display: block;
+  position: relative;
+  padding-top:65px;
+    margin: 0 auto;
+    width: 100%;
+
+}
+.resume{
+	color:#696969;
+	text-align: center;
+	font-weight: bold;
+}
+.prix{
+	font-size: 300%;
+	color: #FF7C4C;
+}
+
+.vraieprix{
+	font-size: 200%;
+	color: #696969;
+}
+.legende{
+	color: #696969;
+	font-size: 150%;
+}
+
+.lientableaucomparatif{
+	color:#FF7C4C;
+	text-decoration: underline;
+	font-size: 120%;
+}
+
+.size150{
+	font-size: 150%;
+}
+
+.produit{
+	border-radius: 0px 0px 0px 0px;
+-moz-border-radius: 0px 0px 0px 0px;
+-webkit-border-radius: 0px 0px 0px 0px;
+border: 3px solid #B9B9B9;
+	margin:3%;
+	padding: 1%;
+}
+
+img.center {
+    display: block;
+    margin: 0 auto;
+}
+.picto{
+	text-align: center; 
+}
+.subtitle a{
+	color: #696969;
+}
+
+
+.subtitle {
+	color: #696969;
+}
+.orangetext{
+	color:#FF7C4C;
+}
+
+.bigsize{
+	font-size: 300%;
+}
+.produitcontributton{
+	font-size: 150%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.img-responsive{width:100%;}
+
+h3{
+	font-weight: bold;
+}
+.labeltableau th{
+	color:#FF7C4C;
+	text-align: center;
+}
+
+[class^="graph"] {
+  display: table;
+  table-layout: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  height: 22rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  background-size: 2rem 2rem;
+}
+[class^="graph"] li {
+  display: table-cell;
+  vertical-align: bottom !important;
+  text-align: center;
+  padding: 0 0.1rem;
+}
+[class^="graph"] li span:first-child {
+  position: relative;
+  display: block;
+  top: 1rem;
+  min-width: 8rem;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-transform: rotate(-45deg) translateZ(0);
+          transform: rotate(-45deg) translateZ(0);
+}
+[class^="graph-vertical"] li span:last-child {
+  display: block;
+  vertical-align: bottom;
+  color: #fff;
+  text-shadow: 0 0 0.1rem rgba(0,0,0,0.8);
+  background-color: #be3c00;
+  background-image: -webkit-linear-gradient(left, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0.1) 100%);
+  background-image: linear-gradient(to right, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0.1) 100%);
+}
+[class^="graph-vertical"] li:nth-child(odd) span:last-child {
+  background-color: #4f9143;
+}
+[class^="graph-vertical"] li:nth-child(4n+1) span:last-child {
+  background-color: #5448a8;
+}
+[class^="graph-vertical"] li:nth-child(5n+4) span:last-child {
+  background-color: #d50ba6;
+}
+[class^="graph-vertical"] li:nth-child(6n+2) span:last-child {
+  background-color: #d5a60b;
+}
+[class^="graph-mark"] li span:first-child {
+  top: 0;
+}
+[class^="graph-mark"] li span:last-child {
+  display: block;
+  vertical-align: bottom;
+  color: #fff;
+  position: relative;
+  top: 1rem;
+}
+[class^="graph-mark"] li span:last-child:after {
+  content: '';
+  display: block;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: -3.7rem auto 0;
+  background-color: #000;
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0.1) 100%);
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0.1) 100%);
+  border-radius: 50%;
+}
+.graph-vertical-caption,
+.graph-mark-caption {
+  position: relative;
+  border-bottom: 7rem solid #555;
+}
+.graph-vertical-caption li span:first-child,
+.graph-mark-caption li span:first-child {
+  position: absolute;
+  top: 100%;
+  margin-left: 2rem;
+  text-align: left;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+@media (max-width: 40em) {
+  [class^="graph"] li span:first-child {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+  }
+  .graph-vertical-caption,
+  .graph-mark-caption {
+    border-bottom: none;
+  }
+  .graph-vertical-caption li span:first-child,
+  .graph-mark-caption li span:first-child {
+    position: relative;
+    margin-left: 0;
+  }
+}
+.graph-vertical-animation li span:last-child {
+  -webkit-animation: anim-graph 2s linear;
+          animation: anim-graph 2s linear;
+}
+.graph-vertical-image {
+  background-size: cover !important;
+}
+.cover {
+  display: none !important;
+}
+@-webkit-keyframes anim-graph {
+  0% {
+    height: 0;
+  }
+}
+@keyframes anim-graph {
+  0% {
+    height: 0;
+  }
+}
+
+.grey-background{
+	background-color: #696969;
+}
+
+.pannelaplusrecurrente{
+  position:relative;
+  bottom:0px;
+  top: 0px;
+  margin-top: 3%;
+  padding-top: 1%;
+  padding-bottom: 0%; 
+  margin-bottom: 0%;
+    margin-top: 0%;
+
+}
+.titlerecurrent{
+	color:#B9B9B9;
+	text-align: center;
+}
+.courrante{
+  font-size: 200%;
+  color:white;
+  text-align: center;
+}
+.explication{
+  color:#B9B9B9;
+  text-align: center;
+}
+.whitetext{
+  color:white;
+}
+
+.row .no-float {
+  display: table-cell;
+  float: none;
+}
+
+.row1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row1 > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+.cadrepannes{
+    border-radius: 0px 0px 0px 0px;
+-moz-border-radius: 0px 0px 0px 0px;
+-webkit-border-radius: 0px 0px 0px 0px;
+border: 2px solid #B9B9B9;
+margin-top:3%;
+padding-top: 1%;
+margin-right:3%;
+padding-right: 1%;
+margin-left:3%;
+padding-left: 1%;
+width: 44%;
+margin-left: -5.4%;
+border-width: 1px;
+margin-top:0%;
+}
+.sizepicture{
+  height:150px;
+  padding-bottom: 50px;
+}
+.fenetre{
+  background-color: #B9B9B9;
+  padding: 40px;
+  margin: 0;
+  display:none; 
+  position:absolute; 
+  left:30%; 
+  top:10%;
+  width:40%;
+  border-radius: 24px 24px 24px 24px;
+-moz-border-radius: 24px 24px 24px 24px;
+-webkit-border-radius: 24px 24px 24px 24px;
+border: 3px solid #FF7C4C;
+}
+.close1{
+  height: 25px;
+  width: 25px;
+}
+.dino{
+  height: 50px;
+}
+
+.produitcontributtontop{
+    font-size: 110%;
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}

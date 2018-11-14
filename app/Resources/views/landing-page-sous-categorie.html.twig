@@ -1,0 +1,322 @@
+{%extends 'base.html.twig'%}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/souscategorie.css') }}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <h1 class="title">{{subcategory.name }} </h1>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-5">
+        <form action="/app_dev.php/sous-categorie/{{subcategory.id}}" method="post">
+            <select id="trierpar" name="trierpar" size="1">
+                <option value="tpc">Trier par prix croissant</option>
+                <option value="tpd">Trier par prix décroissant</option>
+                <option value="tdc">Trier par durée de vie croissante</option>
+                <option value="tdd">Trier par durée de vie décroissante</option>
+            </select>
+            <button type="submit" class="btn btntrier">Trier</button>
+        </form>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-2 filters">
+        <form>
+            <div class="filter">
+                <p class="metalabel">Filtrer par marque</p>
+                {% for brand in brands %}
+                <input class="check" type="checkbox" name="{{brand.id}}" value="{{brand.id}}" checked> {{brand.name}}<br>
+                {% endfor %}
+            </div>
+            <div class="filter">
+                <p class="metalabel">Filtrer par durée de vie</p>
+                <input class="check" type="checkbox" name="dv1" value="dv1" checked> 1 ans<br>
+                <input class="check" type="checkbox" name="dv2" value="dv2" checked> 2 ans<br>
+                <input class="check" type="checkbox" name="dv3" value="dv3" checked> 3 ans<br>
+                <input class="check" type="checkbox" name="dv4" value="dv4" checked> 4 ans<br>
+                <input class="check" type="checkbox" name="dv5" value="dv5" checked> 5 ans<br>
+                <input class="check" type="checkbox" name="dv6" value="dv6" checked> 5-7 ans<br>
+                <input class="check" type="checkbox" name="dv7" value="dv7" checked> 8-10ans<br>
+                <input class="check" type="checkbox" name="dv8" value="dv8" checked> 10-15 ans<br>
+                <input class="check" type="checkbox" name="dv9" value="dv9" checked> + de 15 ans<br>
+            </div>
+            <div class="filter">
+                <p class="metalabel">Filtrer par prix</p>
+                <input class="check" type="checkbox" name="p1" value="p1" checked> 0-10€<br>
+                <input class="check" type="checkbox" name="p2" value="p2" checked> 10-20€<br>
+                <input class="check" type="checkbox" name="p3" value="p3" checked> 20-50€<br>
+                <input class="check" type="checkbox" name="p4" value="p4" checked> 50-100€<br>
+                <input class="check" type="checkbox" name="p5" value="p5" checked> 100-200€<br>
+                <input class="check" type="checkbox" name="p6" value="p6" checked> 200-400€<br>
+                <input class="check" type="checkbox" name="p7" value="p7" checked> 400-800€<br>
+                <input class="check" type="checkbox" name="p8" value="p8" checked> 800-1500€<br>
+                <input class="check" type="checkbox" name="p9" value="p9" checked> + de 1500€<br>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-8 produit-souscat">
+        {% for produit in produits %}
+
+
+
+        {% if produit.defaultLifeSpan <= 1 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv1 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv1 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv1 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv1 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv1 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv1 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv1 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv1 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv1 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 2 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv2 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv2 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv2 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv2 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv2 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv2 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv2 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv2 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv2 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 3 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv3 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv3 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv3 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv3 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv3 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv3 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv3 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv3 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv3 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 4 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv4 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv4 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv4 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv4 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv4 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv4 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv4 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv4 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv4 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 5 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv5 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv5 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv5 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv5 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv5 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv5 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv5 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv5 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv5 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 7 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv6 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv6 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv6 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv6 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv6 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv6 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv6 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv6 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv6 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 10 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv7 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv7 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv7 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv7 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv7 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv7 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv7 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv7 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv7 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% elseif produit.defaultLifeSpan <= 15 %}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv8 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv8 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv8 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv8 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv8 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv8 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv8 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv8 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv8 p9 {{produit.brand.id}}">
+        {% endif %}
+
+        {% else%}
+        {% if produit.prix <= 10 %}
+        <div class="row produit dv9 p1 {{produit.brand.id}}">
+        {% elseif produit.prix <= 20 %}
+        <div class="row produit dv9 p2 {{produit.brand.id}}">
+        {% elseif produit.prix <= 50 %}
+        <div class="row produit dv9 p3 {{produit.brand.id}}">
+        {% elseif produit.prix <= 100 %}
+        <div class="row produit dv9 p4 {{produit.brand.id}}">
+        {% elseif produit.prix <= 200 %}
+        <div class="row produit dv9 p5 {{produit.brand.id}}">
+        {% elseif produit.prix <= 400 %}
+        <div class="row produit dv9 p6 {{produit.brand.id}}">
+        {% elseif produit.prix <= 800 %}
+        <div class="row produit dv9 p7 {{produit.brand.id}}">
+        {% elseif produit.prix <= 1500 %}
+        <div class="row produit dv9 p8 {{produit.brand.id}}">
+        {% else%}
+        <div class="row produit dv9 p9 {{produit.brand.id}}">
+        {% endif %}
+        {% endif%}
+
+
+
+            <div class="col-md-3">
+                <a href="http://blindeur.fr/web//app_dev.php/produit/{{produit.id}}">
+                    <img alt="Bootstrap Image Preview" src="{{produit.urlPicture}}" class="pictureproduct" />
+                </a>
+            </div>
+            <div class="col-md-6 resultatproduit">
+                <h2>
+                    <a href="http://blindeur.fr/web//app_dev.php/produit/{{produit.id}}">{{produit.name}}</a>
+                </h2>
+                <p>
+                    <a href="http://blindeur.fr/web//app_dev.php/categorie/{{subcategory.category.id}}">{{subcategory.category.name}}</a> - <a href="http://blindeur.fr/web//app_dev.php/marque/{{produit.brand.id}}">{{produit.brand.name}}</a>
+                    <br>
+                    <span class= "prix">{{produit.prix}}</span>€
+                </p>
+                <p class="blacktext">Pannes récurrentes:</p>
+                <ul>
+                    {% for i in 0..0%}
+                    <li>{{pannes[i].name}}</li>
+                    {%endfor%}
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <p class="dureetitle">
+                    Durée de vie estimée:
+                    <br>
+        {% if produit.nbcontributions > 5 %}
+        <span class="duree">{{produit.defaultLifeSpan}} ans</span>
+        <br>
+        <span class="nbavis">({{produit.nbcontributions}} avis)</span>
+        {% else %}
+        <p class="pas-assez-de-contrib">Il n'y a pas assez de contributions pour le moment ! <br /> N'hésitez pas à y ajouter votre retour d'expérience en cliquant sur "Je contribue"</p>
+        <br>
+        {% endif %}
+                </p>
+
+
+                {% if app.user.username is not defined %}
+                <a href="http://blindeur.fr/web//app_dev.php/register">
+                    <button type="button" class="btn produitcontributton">
+                     Je Contribue
+                 </button>
+             </a>
+             {%else%}
+                             <a href="http://blindeur.fr/web//app_dev.php/produit/{{produit.id}}?contribution=1">
+                    <button type="button" class="btn produitcontributton">
+                     Je Contribue
+                 </button>
+             </a>
+             {%endif%}
+
+         </div>
+     </div>
+     {%endfor%}
+ </div>
+</div>
+<script src="{{ asset('js/subcategory.js') }}"></script>
+{% endblock %}

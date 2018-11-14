@@ -1,0 +1,209 @@
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(http://blindeur.fr/web/fonts/MyriadPro-Regular.woff);
+}
+
+.btnheader{
+  background:  #FF7C4C;
+  border-radius: 0px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+
+#match{
+  background-color: white;
+}
+#matchList li{
+    color: #FF7C4C!important;
+}
+
+.btnheader:hover {
+  background: #FF7C4C;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none!important;
+}
+
+a {
+    text-decoration: none !important;
+    color:black;
+}
+
+.textenav{
+	color:black!important;
+	font-weight: bold;
+}
+li{
+	color:black!important;
+  list-style-type: none;
+}
+h2{
+	text-align: center;
+}
+
+.orangetext li{
+  color:#FF7C4C;
+}
+.searchbackground{
+  background-image:linear-gradient(
+       rgba(0, 0, 0, 0.4), 
+      rgba(0, 0, 0, 0.4)
+  ),url(http://blindeur.fr/web//images/Banniere.png);)
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */
+  height: 400px;
+margin-left: -15px;
+margin-right: -15px;
+width: auto;
+}
+
+body {
+  font-family:  myFirstFont !important;
+}
+
+button {
+  font-family:  myFirstFont !important;
+}
+
+.whitetext1{
+  color: white;
+}
+
+.greybackground1{
+  background-color: #B9B9B9;
+  height: 100px;
+}
+
+
+.fenetreconnexion .close1{
+  height: 25px;
+  width: 25px;
+}
+
+.fenetreconnexion .title{
+  text-align: center;
+}
+
+.fenetreconnexion .forgetpassword a{
+  text-align: center;
+  color: #696969;
+  text-decoration: underline;
+}
+
+.fenetreconnexion .forgetpassword {
+  text-align: center;
+}
+
+
+.fenetreconnexion .profilmanquant{
+  color: #B9B9B9;
+  text-align: center;
+}
+.logoObso{
+  margin-left: 25px;
+}
+.navbarstyle{
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.produitcontributton{
+      font-size: 16px;
+    font-weight: normal;
+    width: 150px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 2px;
+    display: block;
+    margin:  auto;
+    text-align: center;
+    background-color: #FF7C4C;
+    color: white;
+}
+
+.produit {
+    
+    height:500px;
+}
+
+.btnheader:hover {
+    background: #FF7C4C;
+    color: #ffffff;
+    font-weight: lighter;
+    text-decoration: none!important;
+}
+
+.container-fluid{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.pas-assez-de-contrib{
+  text-align: center;
+  color: #FF7C4C!important;
+  font-size: 70%;
+}
+.pas-assez-de-contrib1{
+  color: white;
+}
+
+/* Modification de la navbar */
+
+.navbar {
+    text-transform: uppercase;
+    font-size:12px;
+    margin-top: 21px;
+}
+
+
+/* Changement taille police des .subtitle */
+
+.subtitle {
+    font-size: 12px;
+}
+
+
+/* Agrandissement en hauteur de la barre de recherche */
+
+
+.form-control {
+        height: 40px;
+}
+
+
+/* Largeur à 100% de la navbar */
+
+.container {
+    width: 100%;
+}
+
+
+/* Changement font-size titre des produits dans "Ceux qui font le plus parler d'eux" */
+
+.titleproduit {
+    
+    font-size:18px;
+    text-align: center;
+    
+}
+
+/* Modifications hover dans la navbar */
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+/* Modifications hover dans la navbar */
+
+a:focus, a:hover {
+    color: #FF7C4C;
+    text-decoration: underline;
+}
